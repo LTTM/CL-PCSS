@@ -1,0 +1,9 @@
+**/__pycache__
+**/*.pth
+log
+out
+err
+wandb
+
+*.bak
+.idea
