@@ -69,7 +69,7 @@ def validate(writer, vset, vloader, epoch, model, device):  # PA, PP, mIoU
     model.eval()
     with torch.no_grad():
         for idx, data in enumerate(tqdm(vloader, "Validating Epoch %d" % (epoch + 1), total=int(len(vset)/vloader.batch_size))):
-            o = model(data)
+            o, _ = model(data)
             y = data["labels"].cuda()
             metric.add_sample(o.argmax(dim=2).flatten(), y.flatten())
 
@@ -88,11 +88,11 @@ def validate(writer, vset, vloader, epoch, model, device):  # PA, PP, mIoU
 
 if __name__ == '__main__':
     epochs = 20 #50
-    batch_size = 16 #6
+    batch_size = 1 #6 #6
     val_batch = 20 #20
     CL = True
     c2f = True
-    step = 1
+    step = 0
     setup = "Sequential_Masked"
     cube_edge = 96
     val_cube_edge = 96
@@ -101,7 +101,7 @@ if __name__ == '__main__':
     dataset = Open3Dataset
 
     if CL:
-        pretrain = "step0"
+        pretrain = "" #"step0"
         #pretrain = "step"+str(step-1) #"step0__18-54-36" #pcs_semantic-kitti_randlanet_bis"  # "s3dis"
         logdir = "log/train" + "_step" + str(step) + "_NEW_" + setup + "_" + datetime.datetime.now().strftime("%H-%M-%S") + pretrain
     else:
@@ -134,6 +134,7 @@ if __name__ == '__main__':
                                                            setup=setup))
         #root_path="../PCSproject/Nuvole_di_punti", fsl=15,
                    #cube_edge=cube_edge)
+
     dloader = DataLoader(dset,
                          batch_size=batch_size,
                          shuffle=True,
@@ -170,7 +171,7 @@ if __name__ == '__main__':
     for e in range(epochs):
         torch.cuda.empty_cache()
         if e % 1 == 0:
-            if e > 0:
+            if e >= 0:
                 miou, o, y = validate(writer, vset, vloader, e, model, device)
                 if miou > best_miou:
                     best_miou = miou
@@ -195,7 +196,7 @@ if __name__ == '__main__':
             optim.zero_grad()
 
             # x, y = x.to(device), y.to(device, dtype=torch.long)-1 # shift indices
-            o = model(data)
+            o, _ = model(data)
             y = data["labels"].cuda()
 
             #l,_,_ = model.get_loss(loss, o, data, device) # non è ancora weighted

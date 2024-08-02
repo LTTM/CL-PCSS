@@ -298,7 +298,7 @@ class RandLANet(BaseModel):
 
         scores = self.fc1(feat)
 
-        return scores.squeeze(3).transpose(1, 2), inner_feat
+        return scores.squeeze(3).transpose(1, 2), inner_feat 
 
     @staticmethod
     def random_sample(feature, pool_idx):

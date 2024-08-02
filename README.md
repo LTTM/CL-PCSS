@@ -7,8 +7,8 @@ Elena Camuffo and Simone Milani, In Proceedings of IEEE Conference of Computer V
 ![image](https://github.com/LTTM/CL-PCSS/assets/63043735/5de6982d-c704-4077-a611-3d4aed84e5d4)
 
 
-### News
-_Codebase is coming soon..._
+### News 🔥
+Aug 2024 - **Codebase released!**
 
 ### Abstract 
 During the last few years, **continual learning (CL)** strategies for image classification and segmentation have been widely investigated designing innovative solutions to tackle catastrophic forgetting, like knowledge distillation and self-inpainting. However, the application of continual learning paradigms to point clouds is still unexplored and investigation is required, especially using architectures that capture the sparsity and uneven distribution of LiDAR data. The current paper analyzes the problem of class incremental learning applied to point cloud semantic segmentation, comparing approaches and state-of-the-art architectures. To the best of our knowledge, this is the first example of class-incremental continual learning for **LiDAR point cloud semantic segmentation**. Different CL strategies were adapted to LiDAR point clouds and tested, tackling both classic fine-tuning scenarios and the Coarse-to-Fine learning paradigm. The framework has been evaluated through two different architectures on **SemanticKITTI**, obtaining results in line with state-of-the-art CL strategies and standard offline learning.

@@ -8,11 +8,10 @@ from torch.utils.data import Dataset
 from collections import namedtuple
 
 from model.randlanet import RandLANet
-from open3d.ml.torch.models import SparseConvUnet, PointTransformer, KPFCNN, PVCNN, PointRCNN, PointPillars, RandLANet
 
 class Open3Dataset(Dataset):
     def __init__(self,
-                 name="DICEA",
+                 name="Open3D",
                 pointcloud_dataset = None,
                 root_path="../semantic_kitti",
                 splits_path="data/SemanticKITTI",
@@ -20,7 +19,7 @@ class Open3Dataset(Dataset):
                 num_pts = 122880,
                 augment = True,
                 repeat = 1,
-                model = PVCNN,
+                model = RandLANet,
                 **kwargs):
                 super().__init__() #name=name)
 
@@ -39,12 +38,15 @@ class Open3Dataset(Dataset):
     def __getitem__(self, item):
         model = self.model(num_classes=len(self.pointcloud_dataset.idmap))
         data = self.getitem(item)
-        inputs = {"point": data[0].squeeze(0).float(), "feat": data[0].squeeze(0).float(), "label": data[1]}
-        inputs = model.preprocess(inputs, self.get_attr(item))
-        inputs = model.transform(inputs, self.get_attr(item))
-        #inputs = namedtuple('Struct',inputs.keys())(*inputs.values())
-        #del inputs["search_tree"]
-        return inputs
+        data = {"point": data[0].squeeze(0).float(), "feat": None, "label": data[1]}
+        if not self.split == 'test':
+            data = model.preprocess(data, self.get_attr(item))
+            data = model.transform(data, self.get_attr(item))
+            # del data["search_tree"]
+        else:
+            model.inference_begin(data)
+            data = model.inference_preprocess()
+        return data
 
     def __len__(self):
         return len(self.items)

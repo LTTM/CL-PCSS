@@ -4,7 +4,7 @@ import os
 
 import yaml
 
-from model.cylinder3d.cylinder3d import Cylinder3D
+#from model.cylinder3d.cylinder3d import Cylinder3D
 from utils.my_losses import KnowledgeDistillationLoss
 
 os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
@@ -24,8 +24,8 @@ from torch.optim import Adam
 from torch.utils.data import DataLoader
 from torch import nn
 
-#from model.randlanet import RandLANet
-#from utils.Open3D import Open3Dataset
+from model.randlanet import RandLANet
+from utils.Open3D import Open3Dataset
 
 from utils.metrics import Metrics
 from utils.losses import ClassWiseCrossEntropyLoss
@@ -114,13 +114,13 @@ if __name__ == '__main__':
         pretrain = ""
         logdir = "log/train" + "_step" + str(lstep) + "_L1_" + setup + "_" + datetime.datetime.now().strftime("%H-%M-%S") + pretrain
     else:
-        pretrain = "kitti_randlanet_47"
+        pretrain = "" #"kitti_randlanet_47"
         logdir = "log/train_kitti_randlanet_" + datetime.datetime.now().strftime("%H-%M-%S") + pretrain
     rmtree(logdir, ignore_errors=True)
     writer = SummaryWriter(logdir, flush_secs=.5)
 
-    model = Cylinder3D(num_classes) #RandLANet(num_neighbors=16, device='cuda',
-                      #num_classes=num_classes)
+    model = RandLANet(num_neighbors=16, device='cuda',
+                      num_classes=num_classes)
 
     if pretrain:
         new = model.state_dict()
