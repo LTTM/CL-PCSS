@@ -58,7 +58,7 @@ conda env create -f clpcss.yml
 #### Training modalities ​​🏋️​
 - **Offline**: 
     ```
-    python train.py --CL False [params]
+    python train_c2f.py --CL False [params]
     ```
 - **Standard CIL Setups**: 
     ```

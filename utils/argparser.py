@@ -118,14 +118,14 @@ def init_params(train_type='train', verbose=True):
         #                       help='Whether to use pixel frequencies to normalize the cross-entropy')
 
     #### CONTINUAL ###
+        argparser.add_argument('--CL', default=True, type=str2bool,
+                            help='Whether to apply a continual learning setup or not')
         # argparser.add_argument('--CL_steps', default=3, type=int,
         #                        help='Number of steps for CL')
         argparser.add_argument('--CLstep', default=0, type=int,
                             help='Number of steps for CL')
        
     if train_type in ['train']:
-        argparser.add_argument('--CL', default=True, type=str2bool,
-                            help='Whether to apply a continual learning setup or not')
         argparser.add_argument('--method', default='CIL', type=str, choices=['CIL'], #, 'Priori', 'SC', 'Random'],
                             help='Selected dataset subdivision method for CL')
         # argparser.add_argument('--c2f', default=False, type=str2bool,

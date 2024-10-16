@@ -69,6 +69,8 @@ def main(args):
     # Set device to CUDA if available
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     dataset = args.dataset
+    args.c2f = False
+    args.CL = True
 
     # Print configuration
     print(f"Training SemanticKITTI using RandLA-Net step {args.CLstep}")     

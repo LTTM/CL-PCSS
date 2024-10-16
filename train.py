@@ -69,13 +69,11 @@ def main(args):
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     dataset = args.dataset
     args.c2f = False
+    args.CL = True
 
     # Print configuration
-    if args.CL:
-        print(f"Training SemanticKITTI using RandLA-Net step {args.CLstep} with setup {args.setup}")
-        print("CIL configuration")
-    else:
-        print("Training SemanticKITTI using RandLA-Net OFFLINE")
+    print(f"Training SemanticKITTI using RandLA-Net step {args.CLstep} with setup {args.setup}")
+    print("CIL configuration")
 
     # Get datasets with continual learning configurations
     dset = Open3Dataset(pointcloud_dataset=dataset(split='train',

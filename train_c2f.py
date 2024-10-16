@@ -58,8 +58,12 @@ def main(args):
     args.c2f = True
 
     # Print configuration
-    print(f"Training SemanticKITTI using RandLA-Net step {args.CLstep}")
-    print("C2F configuration")
+    if not args.CL:
+        print("Training SemanticKITTI using RandLA-Net OFFLINE")
+        args.CLstep = 2
+    else:
+        print(f"Training SemanticKITTI using RandLA-Net step {args.CLstep}")
+        print("C2F configuration")
 
     # Get datasets with continual learning configurations
     dset = Open3Dataset(pointcloud_dataset=dataset(split='train',
