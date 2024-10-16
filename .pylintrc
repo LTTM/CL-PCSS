@@ -99,6 +99,8 @@ enable=
 # --disable=W"
 
 disable=
+    import-error,
+    wrong-import-position,
     attribute-defined-outside-init,
     invalid-name,
     missing-docstring,
