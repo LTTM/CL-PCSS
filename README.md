@@ -81,7 +81,7 @@ conda env create -f clpcss.yml
     python train_c2f.py --CLstep 0 [params]
     ```
 
-#### Testing results 🚀
+<!--#### Testing results 🚀
 ```
 python test.py --pretrained_model True --ckpt_file "your/path/to/model.pt" [params]
 ```
@@ -98,4 +98,4 @@ python test.py --pretrained_model True --ckpt_file "your/path/to/model.pt" [para
 
 The table shows overall results in terms of $\text{mIoU}_{0\rightarrow k}$, with $k$ as the continual learning step, on our CIL partition (above) of the [SemanticKITTI](https://www.semantic-kitti.org/) dataset using [RandLA-Net](https://github.com/QingyongHu/RandLA-Net) point based architecture.
 
-<!-- pretrained models can be found [here](https://drive.google.com/drive/folders/1fv7y1XrgEji6WWIiRMMoLcorv96-Yh6t?usp=sharing). -->
+ pretrained models can be found [here](https://drive.google.com/drive/folders/1fv7y1XrgEji6WWIiRMMoLcorv96-Yh6t?usp=sharing). -->
