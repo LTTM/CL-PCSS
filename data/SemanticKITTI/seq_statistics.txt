@@ -1,0 +1,10 @@
+Samples in sequence	 00: 4541
+Samples in sequence	 01: 1101
+Samples in sequence	 02: 4661
+Samples in sequence	 03: 801
+Samples in sequence	 04: 271
+Samples in sequence	 05: 2761
+Samples in sequence	 06: 1101
+Samples in sequence	 07: 1101
+Samples in sequence	 09: 1591
+Samples in sequence	 10: 1201
