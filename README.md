@@ -12,6 +12,8 @@ Our codebase is licensed under a [Creative Commons Attribution-ShareAlike 4.0 In
 ### News 🔥
 <!-- - Pretrained models released [here](https://drive.google.com/drive/folders/1fv7y1XrgEji6WWIiRMMoLcorv96-Yh6t?usp=sharing)!! -->
 
+- Pretrained models are coming soon...
+
 - **Codebase released!**
 
 ### Abstract 
