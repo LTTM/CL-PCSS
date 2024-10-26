@@ -5,6 +5,7 @@ out
 err
 wandb
 
+.pylintrc
 *.bak
 .idea
 TODO.txt
